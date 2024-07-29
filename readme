@@ -1,0 +1,17 @@
+# CryptoToolkit
+
+**CryptoToolkit** is a comprehensive encryption and data security library designed for web applications. It provides easy-to-use functions for encrypting and decrypting data, as well as managing encryption keys. With support for **AES-GCM** and **RSA-OAEP** algorithms, this toolkit ensures the secure handling of your data.
+
+## Features
+
+- **Key Management:** Generate, export, and import public and private keys.
+- **Encryption and Decryption:** Securely encrypt and decrypt data using modern algorithms.
+- **Data Storage:** Store encrypted data in `localStorage` or `sessionStorage`.
+- **Easy-to-Use API:** Quickly integrate encryption and decryption into your applications.
+
+## Installation
+
+You can install `CryptoToolkit` via npm or yarn:
+
+```bash
+npm install @10dimen/crypto-toolkit

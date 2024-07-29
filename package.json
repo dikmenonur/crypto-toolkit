@@ -1,0 +1,11 @@
+{
+  "name": "@10dimen/crypto-toolkit",
+  "version": "1.0.0",
+  "description": "**CryptoToolkit** is a comprehensive encryption and data security library designed for web applications. It provides easy-to-use functions for encrypting and decrypting data, as well as managing encryption keys. With support for **AES-GCM** and **RSA-OAEP** algorithms, this toolkit ensures the secure handling of your data.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Onur Dikmen",
+  "license": "ISC"
+}
