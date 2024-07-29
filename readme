@@ -1,17 +1,131 @@
 # CryptoToolkit
 
-**CryptoToolkit** is a comprehensive encryption and data security library designed for web applications. It provides easy-to-use functions for encrypting and decrypting data, as well as managing encryption keys. With support for **AES-GCM** and **RSA-OAEP** algorithms, this toolkit ensures the secure handling of your data.
+**CryptoToolkit** is a powerful and flexible encryption library designed for modern web applications. It provides comprehensive utilities for data encryption, decryption, and key management, supporting **AES-GCM** and **RSA-OAEP** algorithms. Additionally, it includes functionalities for hashing data using SHA-512.
 
 ## Features
 
-- **Key Management:** Generate, export, and import public and private keys.
-- **Encryption and Decryption:** Securely encrypt and decrypt data using modern algorithms.
+- **Key Management:** Easily generate, export, and import public and private keys.
+- **Encryption and Decryption:** Securely encrypt and decrypt data with advanced algorithms.
 - **Data Storage:** Store encrypted data in `localStorage` or `sessionStorage`.
-- **Easy-to-Use API:** Quickly integrate encryption and decryption into your applications.
+- **Hashing:** Compute SHA-512 hashes of data for integrity checks and more.
+- **User-Friendly API:** Integrate encryption features seamlessly into your applications.
 
 ## Installation
 
-You can install `CryptoToolkit` via npm or yarn:
+To install `CryptoToolkit`, you can use npm or yarn:
 
 ```bash
 npm install @10dimen/crypto-toolkit
+```
+
+Or with yarn:
+
+```bash
+yarn add @10dimen/crypto-toolkit
+```
+
+## Usage
+
+### Encryption and Decryption
+
+Encrypt and store data:
+
+```javascript
+import { CryptoUtils } from '@10dimen/crypto-toolkit';
+
+// Encrypt and store data in localStorage
+await CryptoUtils.encryptAndStore('myKey', 'mySecretData');
+```
+
+Decrypt data from storage:
+
+```javascript
+import { CryptoUtils } from '@10dimen/crypto-toolkit';
+
+// Retrieve and decrypt data from localStorage
+const decryptedData = await CryptoUtils.decryptFromStorage('myKey');
+console.log(decryptedData); // Output: 'mySecretData'
+```
+
+### Key Management
+
+Generate a new key pair:
+
+```javascript
+const keys = await CryptoUtils.generateKey();
+console.log(keys);
+```
+
+Export and import keys:
+
+```javascript
+// Export public key
+const publicKey = await CryptoUtils.exportPublicKey();
+console.log(publicKey);
+
+// Import public key
+const importedPublicKey = await CryptoUtils.importPublicKey(publicKey);
+```
+
+### Hashing
+
+Hash data using SHA-512:
+
+```javascript
+const hashedData = await CryptoUtils.hashSHA512('myData');
+console.log(hashedData);
+```
+
+**Note:** MD5 hashing is not supported by the Web Crypto API and is not included in this library. For MD5 hashing, consider using additional libraries.
+
+## API Reference
+
+### `CryptoUtils.encrypt(data: string | ArrayBuffer): Promise<ArrayBuffer>`
+
+Encrypts the provided data using RSA-OAEP.
+
+- **data:** The data to encrypt (can be a string or an `ArrayBuffer`).
+
+### `CryptoUtils.decrypt(encryptedData: ArrayBuffer): Promise<string>`
+
+Decrypts the provided data using RSA-OAEP.
+
+- **encryptedData:** The encrypted data to decrypt (must be an `ArrayBuffer`).
+
+### `CryptoUtils.encryptAndStore(key: string, data: string, storage: string = 'localStorage'): Promise<void>`
+
+Encrypts the data and stores it in the specified storage.
+
+- **key:** The key under which the data will be stored.
+- **data:** The data to encrypt and store.
+- **storage:** Storage type, either `'localStorage'` or `'sessionStorage'`.
+
+### `CryptoUtils.decryptFromStorage(key: string, storage: string = 'localStorage'): Promise<string | null>`
+
+Retrieves and decrypts data from the specified storage.
+
+- **key:** The key under which the data is stored.
+- **storage:** Storage type, either `'localStorage'` or `'sessionStorage'`.
+
+### `CryptoUtils.hashSHA512(data: string): Promise<string>`
+
+Hashes the provided data using SHA-512.
+
+- **data:** The data to hash.
+
+## Contributing
+
+We welcome contributions! To contribute:
+
+1. **Fork the repository.**
+2. **Create a new branch (`git checkout -b feature/YourFeature`).**
+3. **Make your changes.**
+4. **Commit your changes (`git commit -am 'Add new feature'`).**
+5. **Push to the branch (`git push origin feature/YourFeature`).**
+6. **Open a Pull Request.**
+
+Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
