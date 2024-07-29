@@ -1,3 +1,7 @@
+Tabii ki! İşte güncellenmiş `README.md` dosyanız:
+
+---
+
 # CryptoToolkit
 
 **CryptoToolkit** is a comprehensive encryption and data security library designed for web applications. It provides easy-to-use functions for encrypting and decrypting data, as well as managing encryption keys. With support for **AES-GCM** and **RSA-OAEP** algorithms, this toolkit ensures the secure handling of your data.
@@ -7,11 +11,120 @@
 - **Key Management:** Generate, export, and import public and private keys.
 - **Encryption and Decryption:** Securely encrypt and decrypt data using modern algorithms.
 - **Data Storage:** Store encrypted data in `localStorage` or `sessionStorage`.
+- **Hashing:** Hash data using MD5 and SHA-512 algorithms.
 - **Easy-to-Use API:** Quickly integrate encryption and decryption into your applications.
 
 ## Installation
 
-You can install `CryptoToolkit` via npm or yarn:
+You can install `CryptoToolkit` via npm:
 
 ```bash
 npm install @10dimen/crypto-toolkit
+```
+
+Or via yarn:
+
+```bash
+yarn add @10dimen/crypto-toolkit
+```
+
+## Usage
+
+Here’s a quick guide to using `CryptoToolkit` in your web application:
+
+### Encryption and Decryption
+
+To encrypt and store data:
+
+```javascript
+import { CryptoUtils } from '@10dimen/crypto-toolkit';
+
+// Encrypt and store data in localStorage
+await CryptoUtils.encryptAndStore('myKey', 'mySecretData');
+```
+
+To decrypt data from storage:
+
+```javascript
+import { CryptoUtils } from '@10dimen/crypto-toolkit';
+
+// Retrieve and decrypt data from localStorage
+const decryptedData = await CryptoUtils.decryptFromStorage('myKey');
+console.log(decryptedData); // Output: 'mySecretData'
+```
+
+### Key Management
+
+To generate a new key pair:
+
+```javascript
+const keys = await CryptoUtils.generateKey();
+console.log(keys);
+```
+
+To export and import keys:
+
+```javascript
+// Export public key
+const publicKey = await CryptoUtils.exportPublicKey();
+console.log(publicKey);
+
+// Import public key
+const importedPublicKey = await CryptoUtils.importPublicKey(publicKey);
+```
+
+### Hashing
+
+To hash data using SHA-512:
+
+```javascript
+const hashedData = await CryptoUtils.hashSHA512('myData');
+console.log(hashedData);
+```
+
+**Note:** MD5 hashing is not natively supported by the Web Crypto API, and thus is not included in this library. Consider using additional libraries for MD5 hashing if required.
+
+## API Reference
+
+### `CryptoUtils.encrypt(data: string | ArrayBuffer): Promise<ArrayBuffer>`
+
+Encrypts the provided data using RSA-OAEP.
+
+- `data`: The data to encrypt (can be a string or an `ArrayBuffer`).
+
+### `CryptoUtils.decrypt(encryptedData: ArrayBuffer): Promise<string>`
+
+Decrypts the provided data using RSA-OAEP.
+
+- `encryptedData`: The encrypted data to decrypt (must be an `ArrayBuffer`).
+
+### `CryptoUtils.encryptAndStore(key: string, data: string, storage: string = 'localStorage'): Promise<void>`
+
+Encrypts the data and stores it in the specified storage.
+
+- `key`: The key under which the data will be stored.
+- `data`: The data to encrypt and store.
+- `storage`: Storage type, either `'localStorage'` or `'sessionStorage'`.
+
+### `CryptoUtils.decryptFromStorage(key: string, storage: string = 'localStorage'): Promise<string | null>`
+
+Retrieves and decrypts data from the specified storage.
+
+- `key`: The key under which the data is stored.
+- `storage`: Storage type, either `'localStorage'` or `'sessionStorage'`.
+
+### `CryptoUtils.hashSHA512(data: string): Promise<string>`
+
+Hashes the provided data using SHA-512.
+
+- `data`: The data to hash.
+
+## Contributing
+
+Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
